@@ -1,15 +1,12 @@
 version: '3.4'
 
-networks:
-  mynext14appdemonetwork:
-
 volumes:
   postgresql-16:
     external: true
   
 services:
-  mynext14appdbdemo:
-    container_name: my-next14-app-db-demo
+  mynext14demodb:
+    container_name: my-next14-demo-db
     image: postgres:16
     ports:
       - 5432:5432
@@ -18,18 +15,14 @@ services:
     environment:
       - POSTGRES_PASSWORD=Password12345!
       - PGDATA=/var/lib/postgresql/data/pgdata
-    networks:
-      - mynext14appdemonetwork
 
-  mynext14appdemo:
-    container_name: my-next14-app-demo
-    image: mynext14appdemo
+  mynext14demoapp:
+    container_name: my-next14-demo-app
+    image: mynext14demoapp
     build:
       context: .
       dockerfile: dev.Dockerfile
     ports:
       - 3000:3000
     depends_on:
-      - mynext14appdbdemo
-    networks:
-      - mynext14appdemonetwork
+      - mynext14demodb
