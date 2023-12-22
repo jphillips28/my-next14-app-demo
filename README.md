@@ -6,5 +6,6 @@ The `docker-compose.yml` is a good template for quickly standing up a locally co
 
 ## Prerequisites
 - Docker version 24.0.6
+  - ***You must create a docker data `volume` named `postgresql-16`*** 
 - Node.js version 20.10.0
 - NPM version 10.2.5
