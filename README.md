@@ -1,4 +1,4 @@
-# My Next.js 14 App Test Drive w/ Prisma.Postrges CRUD Operations
+# My Next.js 14 App Test Drive w/ Prisma.Postgres CRUD Operations
 I'm taking the new Next.js 14 release for a test drive, along with a Prisma O/RM and a backing PostgreSQL database. 
 
 ### Future Bonus:
