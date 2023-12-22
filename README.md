@@ -8,7 +8,7 @@ The `docker-compose.yml` is a good template for quickly standing up a locally co
 - Ubuntu 22.04.3 LTS
 - Docker version 24.0.6
   - ***You must create a docker data `volume` named `postgresql-16`*** 
-- Node.js version 20.10.0 (_optional: for `npx prisma migrate dev --name <schema addition reason>`_)
-- NPM version 10.2.5 (_optional: for local, non-containerized `npm` commands_)
-- Azure Data Studio v1.47.0 (optional)
-- pgAdmin 4 v8.1 (optional)
+- Node.js version 20.10.0 (*optional: for `npx prisma migrate dev --name <schema addition reason>`*)
+- NPM version 10.2.5 (*optional: for local, non-containerized `npm` commands*)
+- Azure Data Studio v1.47.0 (*optional*)
+- pgAdmin 4 v8.1 (*optional*)
