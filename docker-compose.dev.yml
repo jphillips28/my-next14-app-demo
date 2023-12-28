@@ -37,11 +37,16 @@ services:
       dockerfile: dev.Dockerfile
     restart: always
     environment:
+      - NODE_ENV=development
       - DATABASE_URL=postgresql://postgres:Password12345!@postgres_db:5432/mynext14demo?schema=public
     networks:
       - dev_net
     ports:
       - 3000:3000
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
     depends_on:
       postgres_db:
         condition: service_healthy
