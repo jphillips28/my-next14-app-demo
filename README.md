@@ -1,8 +1,8 @@
 # My Next.js 14 App Test Drive w/ Prisma.Postgres CRUD Operations
-I'm taking the new Next.js 14 release for a test drive, along with a Prisma O/RM and a backing PostgreSQL database. If your system is configured to meet the prerequisites, then you should be able to simply run `docker compose up` from a terminal within the application directory.
+I'm taking the new Next.js 14 release for a test drive, along with a Prisma O/RM and a backing PostgreSQL database. If your system is configured to meet the prerequisites, then you should be able to simply run `docker compose -f docker-compose.dev.yml up` from a terminal within the application directory.
 
 ### Future Bonus:
-The `docker-compose.yml` is a good template for quickly standing up a locally containerized sand-box environment for development.
+The `docker-compose.dev.yml` is a good template for quickly standing up a locally containerized sand-box environment for development.
 
 ## Prerequisites
 - Ubuntu 22.04.3 LTS
