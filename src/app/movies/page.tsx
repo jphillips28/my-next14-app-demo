@@ -1,7 +1,11 @@
 import { prisma } from "@/db"
 
+async function getMoviesAsync() {
+	return await prisma.movie.findMany();
+}
+
 export default async function Movies() {
-	const movies = await prisma.movie.findMany()
+	const movies = await getMoviesAsync();
 
 	return (
 		<>
