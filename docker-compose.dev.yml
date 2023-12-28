@@ -1,0 +1,48 @@
+version: '3.4'
+
+networks:
+  dev_net:
+    name: my-next14-demo-network
+    driver: bridge
+
+volumes:
+  postgresql-16:
+    external: true
+  
+services:
+  postgres_db:
+    container_name: my-next14-demo-db
+    image: postgres:16
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=Password12345!
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    networks:
+      - dev_net
+    ports:
+      - 5432:5432
+    volumes:
+      - postgresql-16:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U postgres'"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  next_app:
+    container_name: my-next14-demo-app
+    image: mynext14demoapp
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    restart: always
+    environment:
+      - DATABASE_URL=postgresql://postgres:Password12345!@postgres_db:5432/mynext14demo?schema=public
+    networks:
+      - dev_net
+    ports:
+      - 3000:3000
+    depends_on:
+      postgres_db:
+        condition: service_healthy
+        restart: true
