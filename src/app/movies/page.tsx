@@ -1,6 +1,9 @@
 import { prisma } from "@/db"
 
 async function getMoviesAsync() {
+	// Simulating a long running transaction
+	await new Promise(resolve => setTimeout(resolve, 2000))
+
 	return await prisma.movie.findMany();
 }
 
