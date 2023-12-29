@@ -12,5 +12,6 @@ The `docker-compose.dev.yml` is a good template for quickly standing up a locall
   - ***You must create a docker-desktop-data `volume` named `postgres_16`***
 - Node.js 20.10.0 LTS (*optional: for `npx prisma migrate dev --name <schema-addition-reason>`*)
 - NPM v10.2.5 (*optional: for local, non-containerized `npm` commands*)
+- Visual Studio Code v1.85.1 (*optional*)
 - Azure Data Studio v1.47.0 (*optional*)
 - pgAdmin 4 v8.1 (*optional*)
