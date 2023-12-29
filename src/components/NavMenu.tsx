@@ -19,7 +19,7 @@ export default function NavMenu() {
 				<PiDevToLogo className="bg-amber-300 text-4xl rounded block float-left mr-2" />
 				<Link
 					href="/"
-					className={`text-white origin-left font-medium text-2xl ${!open && "scale-0"} duration-500`}
+					className={`text-white font-medium text-2xl ${!open && "scale-0"} duration-500`}
 				>
 					Logo
 				</Link>
@@ -32,26 +32,30 @@ export default function NavMenu() {
 					className={`text-base bg-transparent w-full text-white ${!open && "w-0"} duration-500 focus:outline-none`}
 				/>
 			</div>
-			<div className="flex flex-col mt-2">
-				<div className="flex items-center mt-2 p-2 rounded-md hover:bg-white/[.18]">
-					<FaHome className={`text-white text-2xl block float-left ${open && "mr-2"}`} />
+			<ul className="pt-2">
+				<li className="text-gray-300 text-sm flex items-center gap-x-4 mt-2 p-2 rounded-md hover:bg-white/[.18]">
+					<span className="text-2xl block float-left">
+						<FaHome />
+					</span>
 					<Link
 						href="/"
-						className={`text-white font-medium ${!open && "hidden"}`}
+						className={`text-base font-medium ${!open && "scale-0"} duration-500`}
 					>
 						Home
 					</Link>
-				</div>
-				<div className="flex items-center mt-2 p-2 rounded-md hover:bg-white/[.18]">
-					<MdLocalMovies className={`text-white text-2xl block float-left ${open && "mr-2"}`} />
+				</li>
+				<li className="text-gray-300 text-sm flex items-center gap-x-4 mt-2 p-2 rounded-md hover:bg-white/[.18]">
+					<span className="text-2xl block float-left">
+						<MdLocalMovies />
+					</span>
 					<Link
 						href="/movies"
-						className={`text-white origin-left font-medium ${!open && "hidden"}`}
+						className={`text-base font-medium ${!open && "scale-0"} duration-500`}
 					>
 						Movies
 					</Link>
-				</div>
-			</div>
+				</li>
+			</ul>
 		</nav>
 	)
 }
