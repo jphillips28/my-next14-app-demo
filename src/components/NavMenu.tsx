@@ -32,8 +32,8 @@ export default function NavMenu() {
 					className={`text-base bg-transparent w-full text-white ${!open && "w-0"} duration-500 focus:outline-none`}
 				/>
 			</div>
-			<ul className="pt-2">
-				<li className="text-gray-300 text-sm flex items-center gap-x-4 mt-2 p-2 rounded-md hover:bg-white/[.18]">
+			<div className="pt-2">
+				<div className="text-gray-300 text-sm flex items-center gap-x-4 mt-2 p-2 rounded-md hover:bg-white/[.18]">
 					<span className="text-2xl block float-left">
 						<FaHome />
 					</span>
@@ -43,8 +43,8 @@ export default function NavMenu() {
 					>
 						Home
 					</Link>
-				</li>
-				<li className="text-gray-300 text-sm flex items-center gap-x-4 mt-2 p-2 rounded-md hover:bg-white/[.18]">
+				</div>
+				<div className="text-gray-300 text-sm flex items-center gap-x-4 mt-2 p-2 rounded-md hover:bg-white/[.18]">
 					<span className="text-2xl block float-left">
 						<MdLocalMovies />
 					</span>
@@ -54,8 +54,8 @@ export default function NavMenu() {
 					>
 						Movies
 					</Link>
-				</li>
-			</ul>
+				</div>
+			</div>
 		</nav>
 	)
 }
