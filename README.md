@@ -8,7 +8,13 @@ The `docker-compose.dev.yml` is a good template for quickly standing up a locall
 - Ubuntu 22.04.3 LTS
 - Docker Desktop v4.26.1
   - ***You must create a docker-desktop-data `volume` named `hot_reload_next`***
+    - This is purely for hot reloading during development
+    - This provides a way to stop automatic volume creation in order to manage host-machine storage space
+    - You will need to delete and recreate this volume when you add `.next` dependencies
   - ***You must create a docker-desktop-data `volume` named `hot_reload_node_modules`***
+    - This is purely for hot reloading during development
+    - This provides a way to stop automatic volume creation in order to manage host-machine storage space
+    - You will need to delete and recreate this volume when you add `node_module` dependencies
   - ***You must create a docker-desktop-data `volume` named `postgres_16`***
 - Node.js 20.10.0 LTS (*optional: for `npx prisma migrate dev --name <schema-addition-reason>`*)
 - NPM v10.2.5 (*optional: for local, non-containerized `npm` commands*)
