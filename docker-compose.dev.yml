@@ -6,7 +6,11 @@ networks:
     driver: bridge
 
 volumes:
-  postgresql-16:
+  hot_reload_next:
+    external: true
+  hot_reload_node_modules:
+    external: true
+  postgres_16:
     external: true
   
 services:
@@ -22,7 +26,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - postgresql-16:/var/lib/postgresql/data
+      - postgres_16:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "sh -c 'pg_isready -U postgres'"]
       interval: 10s
@@ -45,8 +49,8 @@ services:
       - 3000:3000
     volumes:
       - .:/app
-      - /app/node_modules
-      - /app/.next
+      - hot_reload_node_modules:/app/node_modules
+      - hot_reload_next:/app/.next
     depends_on:
       postgres_db:
         condition: service_healthy
