@@ -1,13 +1,19 @@
 "use client"
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { BsArrowLeftShort, BsSearch } from "react-icons/bs"
 import { FaHome } from "react-icons/fa"
 import { MdLocalMovies } from "react-icons/md"
 import { PiDevToLogo } from "react-icons/pi"
 
 export default function NavSidebar() {
+	const searchRef = useRef<HTMLInputElement>(null)
 	const [open, setOpen] = useState(true)
+
+	function handleSearchClick() {
+		setOpen(true)
+		searchRef.current?.focus()
+	}
 
 	return (
 		<nav className={`bg-gradient-to-b from-blue-900 to-fuchsia-950 h-screen p-5 pt-8 relative transform ease-in-out origin-left ${open ? "w-72" : "w-20"} duration-1000`}>
@@ -28,10 +34,11 @@ export default function NavSidebar() {
 
 			<div className={`flex items-center rounded-md bg-white/[.18] mt-6 py-2 ${open ? "px-4" : "px-2"} duration-1000`}>
 				<span className={`text-white text-lg block float-left transform ease-in-out origin-right ${open ? "mr-2" : "pl-0.5"} duration-1000`}>
-					<BsSearch className="hover:cursor-pointer" />
+					<BsSearch className="hover:cursor-pointer" onClick={handleSearchClick} />
 				</span>
 				<input
 					type="search"
+					ref={searchRef}
 					placeholder="Search"
 					className={`text-base bg-transparent text-white full transform ease-in-out origin-left ${!open && "scale-0"} duration-1000 focus:outline-none`}
 				/>
