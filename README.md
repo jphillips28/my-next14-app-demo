@@ -9,12 +9,12 @@ The `docker-compose.dev.yml` is a good template for quickly standing up a locall
 - Docker Desktop v4.26.1
   - ***You must create a docker-desktop-data `volume` named `hot_reload_next`***
   - ***You must create a docker-desktop-data `volume` named `hot_reload_node_modules`***
-    - This is purely for hot reloading during development
-    - This provides a way to stop automatic volume creation in order to manage host-machine storage space
-    - You will need to delete and recreate this volume when you add `.next` dependencies
-    - You will need to delete and recreate this volume when you add `node_module` dependencies
+    - These are purely for hot reloading during local development
+    - These provide a way to stop automatic volume creation in order to manage host-machine storage space
+    - You will need to delete and recreate the associated volume when you add `.next` dependencies
+    - You will need to delete and recreate the associated volume when you add `node_module` dependencies
   - ***You must create a docker-desktop-data `volume` named `postgres_16`***
-    - This is purely for local development PostgreSQL dependency persistence
+    - This is for local development PostgreSQL dependency persistence
 - Node.js 20.10.0 LTS (*optional: for `npx prisma migrate dev --name <schema-addition-reason>`*)
 - NPM v10.2.5 (*optional: for local, non-containerized `npm` commands*)
 - Visual Studio Code v1.85.1 (*optional*)
