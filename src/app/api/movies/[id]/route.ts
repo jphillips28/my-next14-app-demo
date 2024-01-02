@@ -1,7 +1,7 @@
 import { prisma } from "@/db"
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 
-export async function GET(_: Request, context: any) {
+export async function GET(_: NextRequest, context: any) {
 	const { id } = context.params
 
 	try {
@@ -18,7 +18,7 @@ export async function GET(_: Request, context: any) {
 	}
 }
 
-export async function PUT(request: Request, context: any) {
+export async function PUT(request: NextRequest, context: any) {
 	const { id } = context.params
 	const { title } = await request.json()
 	if (title == null) {
@@ -37,7 +37,7 @@ export async function PUT(request: Request, context: any) {
 	}
 }
 
-export async function DELETE(_: Request, context: any) {
+export async function DELETE(_: NextRequest, context: any) {
 	const { id } = context.params
 
 	try {
