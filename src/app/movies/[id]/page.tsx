@@ -37,9 +37,10 @@ async function updateMovie(data: FormData) {
 }
 
 export default async function Movie({ params }: { params: { id: string } }) {
+	const id = params.id
 	let title: string | undefined
-	if (params.id !== "create") {
-		({ title } = await getMovie(params.id))
+	if (id !== "create") {
+		({ title } = await getMovie(id))
 	}
 
 	return (
@@ -47,15 +48,17 @@ export default async function Movie({ params }: { params: { id: string } }) {
 			<article className="p-8">
 				<h1 className="text-4xl font-medium mb-3">{title ?? "Create Movie"}</h1>
 				<section className="w-3/5">
-					<form action={params.id !== "create" ? updateMovie : submitMovie}>
+					<form action={id !== "create" ? updateMovie : submitMovie}>
 						<div className="flex items-center gap-x-1 mb-3">
-							<label>Title</label>
+							<label htmlFor="title">Title</label>
 							<input
 								type="text"
+								id="title"
 								name="title"
 								placeholder="Movie title"
 								className="border border-black rounded-sm p-1 w-full"
 								autoFocus
+								required
 							/>
 						</div>
 						<div className="flex items-center gap-x-1 justify-end">
