@@ -1,15 +1,11 @@
-import { prisma } from "@/db"
-
-async function getMoviesAsync() {
-	return await prisma.movie.findMany();
-}
+import { getMovies } from "../api/movies/fetch";
 
 export default async function Movies() {
-	const movies = await getMoviesAsync();
+	const movies = await getMovies();
 
 	return (
 		<main className="w-full">
-			<article className="p-8">
+			<div className="p-8">
 				<h1 className="text-4xl font-medium mb-2">Movie List</h1>
 				<p className="mb-4">TODO: This "thingy" demonstrates "what concept"...</p>
 				<table className="min-w-full border-b border-black mb-2">
@@ -49,7 +45,7 @@ export default async function Movies() {
 				>
 					Create
 				</button>
-			</article>
+			</div>
 		</main>
 	)
 }

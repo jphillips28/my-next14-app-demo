@@ -43,6 +43,7 @@ services:
     environment:
       - NODE_ENV=development
       - DATABASE_URL=postgresql://postgres:Password12345!@postgres_db:5432/mynext14demo?schema=public
+      - NEXT_PUBLIC_BASE_URL=http://localhost:3000
     networks:
       - dev_net
     ports:
