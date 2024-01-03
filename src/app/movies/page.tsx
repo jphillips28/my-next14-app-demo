@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getMovies } from "../api/movies/fetch";
 
 export default async function Movies() {
@@ -5,8 +6,8 @@ export default async function Movies() {
 
 	return (
 		<main className="w-full">
-			<div className="p-8">
-				<h1 className="text-4xl font-medium mb-2">Movie List</h1>
+			<article className="p-8">
+				<h1 className="text-4xl font-medium mb-2">Movie Collection</h1>
 				<p className="mb-4">TODO: This "thingy" demonstrates "what concept"...</p>
 				<table className="min-w-full border-b border-black mb-2">
 					<thead className="border-b border-black">
@@ -39,13 +40,15 @@ export default async function Movies() {
 						))}
 					</tbody>
 				</table>
-				<button
-					type="button"
-					className="bg-transparent text-green-700 border border-green-700 px-3 py-1.5 m-1 rounded hover:bg-green-700 hover:text-white hover:border-transparent"
-				>
-					Create
-				</button>
-			</div>
+				<Link href="/movies/create">
+					<button
+						type="button"
+						className="bg-transparent text-green-700 border border-green-700 px-3 py-1.5 m-1 rounded hover:bg-green-700 hover:text-white hover:border-transparent"
+					>
+						Create
+					</button>
+				</Link>
+			</article>
 		</main>
 	)
 }
