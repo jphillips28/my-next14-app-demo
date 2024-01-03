@@ -1,5 +1,20 @@
 import Link from "next/link";
-import { getMovies } from "../api/movies/fetch";
+import { deleteMovie, getMovies } from "../api/movies/fetch";
+import { redirect } from "next/navigation";
+
+async function removeMovie(data: FormData) {
+	"use server"
+
+	const id = data.get("movieId")?.valueOf()
+	if (typeof id !== "string" || id.length === 0) {
+		// TODO: Validation messages
+		throw new Error("Invalid Movie Uuid")
+	}
+
+	await deleteMovie(id)
+	// TODO: This is not updating the existing table... ?
+	redirect("/movies")
+}
 
 export default async function Movies() {
 	const movies = await getMovies();
@@ -23,18 +38,26 @@ export default async function Movies() {
 								<td className="text-left p-1">...{movie.id.substring(movie.id.length - 6, movie.id.length)}</td>
 								<td className="text-left p-1">{movie.title}</td>
 								<td className="text-left p-1">
-									<button
-										type="button"
-										className="bg-transparent text-blue-500 border border-blue-500 px-3 py-1.5 m-1 rounded hover:bg-blue-500 hover:text-white hover:border-transparent"
-									>
-										Update
-									</button>
-									<button
-										type="button"
-										className="bg-red-700 text-white border border-red-700 px-3 py-1.5 m-1 rounded hover:bg-red-900 hover:border-transparent"
-									>
-										Delete
-									</button>
+									<div className="flex items-center gap-x-1">
+										<Link href={`/movies/${movie.id}`}>
+											<button
+												type="button"
+												className="bg-transparent text-blue-500 border border-blue-500 px-3 py-1.5 m-1 rounded hover:bg-blue-500 hover:text-white hover:border-transparent"
+											>
+												Update
+											</button>
+										</Link>
+										<form action={removeMovie}>
+											<button
+												type="submit"
+												name="movieId"
+												className="bg-red-700 text-white border border-red-700 px-3 py-1.5 m-1 rounded hover:bg-red-900 hover:border-transparent"
+												value={movie.id}
+											>
+												Delete
+											</button>
+										</form>
+									</div>
 								</td>
 							</tr>
 						))}

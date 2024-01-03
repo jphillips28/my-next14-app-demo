@@ -46,7 +46,7 @@ export async function getMovie(id: string): Promise<MovieResponse> {
 	return response.json()
 }
 
-export async function updateMovie(id: string, { title }: { title: string }): Promise<MovieResponse> {
+export async function putMovie(id: string, { title }: { title: string }): Promise<MovieResponse> {
 	const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/movies/${id}`
 	const response = await fetch(url, {
 		method: "PUT",
