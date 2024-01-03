@@ -8,7 +8,7 @@ async function submitMovie(data: FormData) {
 	const title = data.get("title")?.valueOf()
 	if (typeof title !== "string" || title.length === 0) {
 		// TODO: Validation messages
-		throw new Error("Invalid Title")
+		throw new Error("Invalid Movie Title")
 	}
 
 	await createMovie({ title })
@@ -22,36 +22,38 @@ export default async function Movie({ params }: { params: { id: string } }) {
 	}
 
 	return (
-		<main className="w-3/5">
+		<main className="w-full">
 			<article className="p-8">
 				<h1 className="text-4xl font-medium mb-3">{title ?? "Create Movie"}</h1>
-				<form action={submitMovie}>
-					<div className="flex items-center gap-x-1 mb-3">
-						<label>Title</label>
-						<input
-							type="text"
-							name="title"
-							placeholder="Movie title"
-							className="border border-black rounded-sm p-1 w-full"
-						/>
-					</div>
-					<div className="flex items-center gap-x-1 justify-end">
-						<Link href="/movies">
+				<section className="w-3/5">
+					<form action={submitMovie}>
+						<div className="flex items-center gap-x-1 mb-3">
+							<label>Title</label>
+							<input
+								type="text"
+								name="title"
+								placeholder="Movie title"
+								className="border border-black rounded-sm p-1 w-full"
+							/>
+						</div>
+						<div className="flex items-center gap-x-1 justify-end">
+							<Link href="/movies">
+								<button
+									type="button"
+									className="bg-blue-500 text-white border border-blue-500 px-3 py-1.5 rounded hover:bg-blue-900 hover:border-transparent"
+								>
+									Cancel
+								</button>
+							</Link>
 							<button
-								type="button"
-								className="bg-blue-500 text-white border border-blue-500 px-3 py-1.5 rounded hover:bg-blue-900 hover:border-transparent"
+								type="submit"
+								className="bg-green-700 text-white border border-green-700 px-3 py-1.5 rounded hover:bg-green-900 hover:border-transparent"
 							>
-								Cancel
+								Submit
 							</button>
-						</Link>
-						<button
-							type="submit"
-							className="bg-green-700 text-white border border-green-700 px-3 py-1.5 rounded hover:bg-green-900 hover:border-transparent"
-						>
-							Submit
-						</button>
-					</div>
-				</form>
+						</div>
+					</form>
+				</section>
 			</article>
 		</main>
 	)
