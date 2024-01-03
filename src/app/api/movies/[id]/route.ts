@@ -1,8 +1,8 @@
 import { prisma } from "@/db"
 import { NextRequest, NextResponse } from "next/server"
 
-export async function GET(_: NextRequest, context: any) {
-	const { id } = context.params
+export async function GET(_: NextRequest, { params }: { params: any }) {
+	const { id } = params
 
 	try {
 		const result = await prisma.movie.findUnique({
@@ -18,8 +18,8 @@ export async function GET(_: NextRequest, context: any) {
 	}
 }
 
-export async function PUT(request: NextRequest, context: any) {
-	const { id } = context.params
+export async function PUT(request: NextRequest, { params }: { params: any }) {
+	const { id } = params
 	const { title } = await request.json()
 	if (title == null) {
 		return NextResponse.json({ message: "Movie prop 'title' cannot be null or undefined." }, { status: 400 })
@@ -37,8 +37,8 @@ export async function PUT(request: NextRequest, context: any) {
 	}
 }
 
-export async function DELETE(_: NextRequest, context: any) {
-	const { id } = context.params
+export async function DELETE(_: NextRequest, { params }: { params: any }) {
+	const { id } = params
 
 	try {
 		const result = await prisma.movie.delete({
