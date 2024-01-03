@@ -74,7 +74,7 @@ export default async function Movie({ params }: { params: { id: string } }) {
 								type="submit"
 								name="movieId"
 								className="bg-green-700 text-white border border-green-700 px-3 py-1.5 rounded hover:bg-green-900 hover:border-transparent"
-								value={params.id}
+								value={id}
 							>
 								Submit
 							</button>
