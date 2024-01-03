@@ -1,9 +1,9 @@
-type ResponseType = {
+type MovieResponse = {
 	id: string
 	title?: string
 }
 
-export async function getMovies(): Promise<ResponseType[]> {
+export async function getMovies(): Promise<MovieResponse[]> {
 	const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/movies`
 	const response = await fetch(url, {
 		method: "GET",
@@ -15,7 +15,7 @@ export async function getMovies(): Promise<ResponseType[]> {
 	return response.json()
 }
 
-export async function createMovie({ title }: { title: string }): Promise<ResponseType> {
+export async function createMovie({ title }: { title: string }): Promise<MovieResponse> {
 	const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/movies`
 	const response = await fetch(url, {
 		method: "POST",
@@ -28,7 +28,7 @@ export async function createMovie({ title }: { title: string }): Promise<Respons
 	return response.json()
 }
 
-export async function getMovie(id: string): Promise<ResponseType> {
+export async function getMovie(id: string): Promise<MovieResponse> {
 	const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/movies/${id}`
 	const response = await fetch(url, {
 		method: "GET",
@@ -40,7 +40,7 @@ export async function getMovie(id: string): Promise<ResponseType> {
 	return response.json()
 }
 
-export async function updateMovie(id: string, { title }: { title: string }): Promise<ResponseType> {
+export async function updateMovie(id: string, { title }: { title: string }): Promise<MovieResponse> {
 	const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/movies/${id}`
 	const response = await fetch(url, {
 		method: "PUT",
@@ -53,7 +53,7 @@ export async function updateMovie(id: string, { title }: { title: string }): Pro
 	return response.json()
 }
 
-export async function deleteMovie(id: string): Promise<ResponseType> {
+export async function deleteMovie(id: string): Promise<MovieResponse> {
 	const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/movies/${id}`
 	const response = await fetch(url, {
 		method: "DELETE",
