@@ -9,7 +9,7 @@ export default async function Movies() {
 			<article className="p-8">
 				<h1 className="text-4xl font-medium mb-2">Movie Collection</h1>
 				<p className="mb-4">TODO: This "thingy" demonstrates "what concept"...</p>
-				<table className="min-w-full border-b border-black mb-2">
+				<table className="min-w-full">
 					<thead className="border-b border-black">
 						<tr>
 							<th className="text-left w-[10%] p-1">Id</th>
@@ -38,16 +38,22 @@ export default async function Movies() {
 								</td>
 							</tr>
 						))}
+						<tr className="border-t border-black">
+							<td />
+							<td />
+							<td className="text-left p-1">
+								<Link href="/movies/create">
+									<button
+										type="button"
+										className="bg-transparent text-green-700 border border-green-700 px-3 py-1.5 m-1 rounded hover:bg-green-700 hover:text-white hover:border-transparent"
+									>
+										Create
+									</button>
+								</Link>
+							</td>
+						</tr>
 					</tbody>
 				</table>
-				<Link href="/movies/create">
-					<button
-						type="button"
-						className="bg-transparent text-green-700 border border-green-700 px-3 py-1.5 m-1 rounded hover:bg-green-700 hover:text-white hover:border-transparent"
-					>
-						Create
-					</button>
-				</Link>
 			</article>
 		</main>
 	)
