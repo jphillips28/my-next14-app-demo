@@ -4,7 +4,7 @@ import { createMovie, deleteMovie, putMovie } from "./fetchers"
 
 export async function submitMovie(data: FormData) {
 	const title = data.get("title")?.valueOf()
-	if (typeof title !== "string" || title.length === 0) {
+	if (typeof title !== "string" || title.trim().length < 1) {
 		// TODO: Validation messages
 		throw new Error("Invalid Movie Title")
 	}
@@ -16,13 +16,13 @@ export async function submitMovie(data: FormData) {
 
 export async function updateMovie(data: FormData) {
 	const id = data.get("movieId")?.valueOf()
-	if (typeof id !== "string" || id.length === 0) {
+	if (typeof id !== "string" || id.trim().length < 1) {
 		// TODO: Validation messages
 		throw new Error("Invalid Movie Uuid")
 	}
 
 	const title = data.get("title")?.valueOf()
-	if (typeof title !== "string" || title.length === 0) {
+	if (typeof title !== "string" || title.trim().length < 1) {
 		// TODO: Validation messages
 		throw new Error("Invalid Movie Title")
 	}
@@ -34,7 +34,7 @@ export async function updateMovie(data: FormData) {
 
 export async function removeMovie(data: FormData) {
 	const id = data.get("movieId")?.valueOf()
-	if (typeof id !== "string" || id.length === 0) {
+	if (typeof id !== "string" || id.trim().length < 1) {
 		// TODO: Validation messages
 		throw new Error("Invalid Movie Uuid")
 	}
