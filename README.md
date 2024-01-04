@@ -20,3 +20,8 @@ The `docker-compose.dev.yml` is a good template for quickly standing up a locall
 - Visual Studio Code v1.85.1 (*optional*)
 - Azure Data Studio v1.47.0 (*optional*)
 - pgAdmin 4 v8.1 (*optional*)
+
+## Testing Notes
+- I'm simulating a long running database transaction in each of the CRUD operations for the `MovieApi`
+  - This helps demonstrate the snappy *follow-up* data load
+![alt text](https://github.com/jphillips28/my-next14-app-demo/blob/master/README_image_01.png?raw=true)
