@@ -9,7 +9,7 @@ export default async function Movies() {
 		<main className="w-full">
 			<article className="p-8">
 				<h1 className="text-4xl font-medium mb-2">Movie Collection</h1>
-				<p className="mb-4">TODO: This "thingy" demonstrates "what concept"...</p>
+				<p className="mb-4">TODO: This "thingy" demonstrates "what concepts"...?</p>
 				<table className="min-w-full">
 					<thead className="border-b border-black">
 						<tr>
