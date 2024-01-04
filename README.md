@@ -24,4 +24,4 @@ The `docker-compose.dev.yml` is a good template for quickly standing up a locall
 ## Testing Notes
 - I'm simulating a long running database transaction in each of the CRUD operations for the `MovieApi`
   - This helps demonstrate the snappy *follow-up* data load
-![alt text](https://github.com/jphillips28/my-next14-app-demo/blob/master/README_image_01.png?raw=true)
+![alt text](https://github.com/jphillips28/my-next14-app-demo/blob/main/README_image_01.png?raw=true)
