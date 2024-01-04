@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import { removeMovie } from "./actions";
 import { getMovies } from "./fetchers";
