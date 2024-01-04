@@ -2,6 +2,9 @@ import { prisma } from "@/db"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(_: NextRequest, { params }: { params: any }) {
+	// Simulating a long running transaction
+	await new Promise(resolve => setTimeout(resolve, 2000))
+
 	const { id } = params
 
 	try {
@@ -19,6 +22,9 @@ export async function GET(_: NextRequest, { params }: { params: any }) {
 }
 
 export async function PUT(request: NextRequest, { params }: { params: any }) {
+	// Simulating a long running transaction
+	await new Promise(resolve => setTimeout(resolve, 2000))
+
 	const { id } = params
 	const { title } = await request.json()
 	if (title == null) {
@@ -38,6 +44,9 @@ export async function PUT(request: NextRequest, { params }: { params: any }) {
 }
 
 export async function DELETE(_: NextRequest, { params }: { params: any }) {
+	// Simulating a long running transaction
+	await new Promise(resolve => setTimeout(resolve, 2000))
+
 	const { id } = params
 
 	try {

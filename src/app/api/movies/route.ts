@@ -2,6 +2,9 @@ import { prisma } from "@/db"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET() {
+	// Simulating a long running transaction
+	await new Promise(resolve => setTimeout(resolve, 2000))
+
 	try {
 		const result = await prisma.movie.findMany({
 			select: { id: true, title: true },
@@ -13,6 +16,9 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
+	// Simulating a long running transaction
+	await new Promise(resolve => setTimeout(resolve, 2000))
+
 	const { title } = await request.json()
 
 	if (title == null) {
