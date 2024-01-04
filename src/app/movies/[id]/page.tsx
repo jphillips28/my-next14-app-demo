@@ -1,40 +1,6 @@
-import { createMovie, getMovie, putMovie } from "@/app/api/movies/fetch"
 import Link from "next/link"
-import { redirect } from "next/navigation"
-
-async function submitMovie(data: FormData) {
-	"use server"
-
-	const title = data.get("title")?.valueOf()
-	if (typeof title !== "string" || title.length === 0) {
-		// TODO: Validation messages
-		throw new Error("Invalid Movie Title")
-	}
-
-	await createMovie({ title })
-	// TODO: This is not updating the existing table... ?
-	redirect("/movies")
-}
-
-async function updateMovie(data: FormData) {
-	"use server"
-
-	const id = data.get("movieId")?.valueOf()
-	if (typeof id !== "string" || id.length === 0) {
-		// TODO: Validation messages
-		throw new Error("Invalid Movie Uuid")
-	}
-
-	const title = data.get("title")?.valueOf()
-	if (typeof title !== "string" || title.length === 0) {
-		// TODO: Validation messages
-		throw new Error("Invalid Movie Title")
-	}
-
-	await putMovie(id, { title })
-	// TODO: This is not updating the existing table... ?
-	redirect("/movies")
-}
+import { submitMovie, updateMovie } from "../actions"
+import { getMovie } from "../fetchers"
 
 export default async function Movie({ params }: { params: { id: string } }) {
 	const id = params.id

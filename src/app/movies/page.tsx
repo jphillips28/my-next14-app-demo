@@ -1,20 +1,6 @@
 import Link from "next/link";
-import { deleteMovie, getMovies } from "../api/movies/fetch";
-import { redirect } from "next/navigation";
-
-async function removeMovie(data: FormData) {
-	"use server"
-
-	const id = data.get("movieId")?.valueOf()
-	if (typeof id !== "string" || id.length === 0) {
-		// TODO: Validation messages
-		throw new Error("Invalid Movie Uuid")
-	}
-
-	await deleteMovie(id)
-	// TODO: This is not updating the existing table... ?
-	redirect("/movies")
-}
+import { removeMovie } from "./actions";
+import { getMovies } from "./fetchers";
 
 export default async function Movies() {
 	const movies = await getMovies();
