@@ -1,27 +1,22 @@
 {
 	"configurations": [
 		{
-			"name": "Attach",
-			"type": "node",
-			"request": "attach",
-			"remoteRoot": "/usr/src/app",
-			"port": 9230
-		},
-		{
 			"name": "Launch Chrome",
 			"type": "chrome",
 			"request": "launch",
 			"url": "http://localhost:3000",
 			"webRoot": "${workspaceFolder}"
-		}
-	],
-	"compounds": [
+		},
 		{
 			"name": "Full Stack",
-			"configurations": [
-				"Attach",
-				"Launch Chrome"
-			]
+			"type": "node-terminal",
+			"request": "launch",
+			"command": "npm run dev",
+			"serverReadyAction": {
+				"pattern": "- Local:.+(https?://.+)",
+				"uriFormat": "%s",
+				"action": "debugWithChrome"
+			}
 		}
 	]
 }
