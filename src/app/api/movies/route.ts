@@ -8,6 +8,7 @@ export async function GET() {
 	try {
 		const result = await prisma.movie.findMany({
 			select: { id: true, title: true },
+			orderBy: [{ title: "asc" }],
 		})
 		return NextResponse.json(result)
 	} catch (error) {
