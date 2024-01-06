@@ -1,11 +1,26 @@
 {
 	"configurations": [
 		{
+			"name": "Attach",
+			"type": "node",
+			"request": "attach",
+			"remoteRoot": "/usr/src/app"
+		},
+		{
 			"name": "Launch Chrome",
-			"request": "launch",
 			"type": "chrome",
+			"request": "launch",
 			"url": "http://localhost:3000",
 			"webRoot": "${workspaceFolder}"
+		}
+	],
+	"compounds": [
+		{
+			"name": "Full Stack",
+			"configurations": [
+				"Attach",
+				"Launch Chrome"
+			]
 		}
 	]
 }
