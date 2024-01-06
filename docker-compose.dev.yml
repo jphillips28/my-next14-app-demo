@@ -48,6 +48,8 @@ services:
       - dev_net
     ports:
       - 3000:3000
+      - 9229:9229
+      - 9230:9230
     volumes:
       - .:/usr/src/app
       - hot_reload_node_modules:/usr/src/app/node_modules
@@ -56,3 +58,4 @@ services:
       postgres_db:
         condition: service_healthy
         restart: true
+    command: npm run dev

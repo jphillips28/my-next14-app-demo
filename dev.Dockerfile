@@ -36,4 +36,4 @@ WORKDIR /usr/src/app
 # COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 # COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 # USER nextjs
-CMD npm run dev
+# CMD npm run dev
