@@ -1,24 +1,29 @@
 {
 	"configurations": [
 		{
-			"name": "Launch Chrome",
-			"type": "chrome",
-			"request": "launch",
-			"url": "http://localhost:3000",
-			"webRoot": "${workspaceFolder}"
-		},
-		{
-			"name": "Full Stack",
+			"name": "Docker: Launch Chrome",
 			"type": "node-terminal",
 			"request": "launch",
-			"preLaunchTask": "docker-compose: up postgres_db",
-			"command": "npm run dev",
-			"postDebugTask": "docker-compose: down",
+			"command": "docker compose -f docker-compose.dev.yml up",
 			"serverReadyAction": {
 				"pattern": "- Local:.+(https?://.+)",
 				"uriFormat": "%s",
 				"action": "debugWithChrome"
-			}
+			},
+			"postDebugTask": "docker-compose: down",
+		},
+		{
+			"name": "Next.js: Full Stack",
+			"type": "node-terminal",
+			"request": "launch",
+			"preLaunchTask": "docker-compose: up postgres_db",
+			"command": "dotenv -e .env.development -- npm run dev",
+			"serverReadyAction": {
+				"pattern": "- Local:.+(https?://.+)",
+				"uriFormat": "%s",
+				"action": "debugWithChrome"
+			},
+			"postDebugTask": "docker-compose: down",
 		}
 	]
 }
