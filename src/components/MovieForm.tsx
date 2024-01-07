@@ -11,7 +11,7 @@ type MovieFromProps = {
 
 export default function MovieForm({ id }: MovieFromProps) {
 	const [movie, setMovie] = useState<MovieResponse>({ id, title: "Create Movie" })
-	const [title, setTitle] = useState<string>()
+	const [title, setTitle] = useState<string | undefined>("")
 	const [isLoading, setLoading] = useState(true)
 
 	useEffect(() => {
