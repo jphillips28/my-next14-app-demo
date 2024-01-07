@@ -15,9 +15,13 @@ The `docker-compose.dev.yml` is a good template for quickly standing up a locall
     - You will need to delete and recreate the associated volume when you add `node_module` dependencies
   - ***You must create a docker-desktop-data `volume` named `postgres_16`***
     - This is for local development PostgreSQL dependency persistence
-- Node.js 20.10.0 LTS (*optional: for `npx prisma migrate dev --name <schema-addition-reason>`*)
-- NPM v10.2.5 (*optional: for local, non-containerized `npm` commands*)
-- Visual Studio Code v1.85.1 (*optional*)
+- Node.js 20.10.0 LTS
+- NPM v10.2.5
+  - Manage and develop Prisma O/RM schema via `npx prisma migrate dev --name <schema-addition-reason>`
+- Visual Studio Code v1.85.1
+  - Quick `RUN AND DEGUG` Startup
+
+![alt text](https://github.com/jphillips28/my-next14-app-demo/blob/main/README_image_02.png?raw=true)
 - Azure Data Studio v1.47.0 (*optional*)
 - pgAdmin 4 v8.1 (*optional*)
 

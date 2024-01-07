@@ -15,6 +15,9 @@
 				"files": [
 					"${workspaceFolder}/docker-compose.dev.yml"
 				]
+			},
+			"presentation": {
+				"close": true
 			}
 		},
 		{

@@ -1,7 +1,7 @@
 {
 	"configurations": [
 		{
-			"name": "Docker: Launch Chrome",
+			"name": "Docker Compose: Client",
 			"type": "node-terminal",
 			"request": "launch",
 			"command": "docker compose -f docker-compose.dev.yml up",
@@ -13,7 +13,7 @@
 			"postDebugTask": "docker-compose: down",
 		},
 		{
-			"name": "Next.js: Full Stack",
+			"name": "NPM: Client + Server",
 			"type": "node-terminal",
 			"request": "launch",
 			"preLaunchTask": "docker-compose: up postgres_db",
