@@ -2,7 +2,7 @@
 import { submitMovie, updateMovie } from "@/app/movies/actions";
 import { MovieResponse, getMovie } from "@/app/movies/fetchers";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { ImSpinner9 } from "react-icons/im";
 
 type MovieFromProps = {
@@ -13,6 +13,7 @@ export default function MovieForm({ id }: MovieFromProps) {
 	const [movie, setMovie] = useState<MovieResponse>({ id, title: "Create Movie" })
 	const [title, setTitle] = useState<string | undefined>("")
 	const [isLoading, setLoading] = useState(true)
+	const [isPending, startTransition] = useTransition()
 
 	useEffect(() => {
 		if (id !== "create") {
@@ -27,12 +28,14 @@ export default function MovieForm({ id }: MovieFromProps) {
 		}
 	}, [])
 
-	function handleSubmit(data: FormData) {
-		if (id !== "create") {
-			updateMovie(data)
-		} else {
-			submitMovie(data)
-		}
+	async function handleSubmit(data: FormData) {
+		startTransition(() => {
+			if (id !== "create") {
+				updateMovie(data)
+			} else {
+				submitMovie(data)
+			}
+		})
 	}
 
 	return (
@@ -70,10 +73,14 @@ export default function MovieForm({ id }: MovieFromProps) {
 						<button
 							type="submit"
 							name="movieId"
-							className="bg-green-700 text-white border border-green-700 px-3 py-1.5 rounded hover:bg-green-900 hover:border-transparent"
+							className={`flex items-center bg-green-700 text-white border border-green-700 px-3 py-1.5 rounded ${isPending && "opacity-50 cursor-not-allowed"} hover:bg-green-900 hover:border-transparent`}
 							value={id}
+							disabled={isPending}
 						>
-							Submit
+							{isPending && <ImSpinner9 className="rounded-full mr-2 animate-[spin_1.5s_linear_infinite]" />}
+							<span>
+								{isPending ? "Submitting..." : "Submit"}
+							</span>
 						</button>
 					</div>
 				</form>
