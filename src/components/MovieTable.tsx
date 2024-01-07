@@ -75,18 +75,17 @@ export default function MovieTable() {
 						<td />
 						<td />
 						<td className="text-left p-1">
-							{isLoading ?
-								<ImSpinner9 className="text-2xl text-blue-500 m-4 rounded-full animate-[spin_1.5s_linear_infinite]" />
-								:
-								<Link href="/movies/create">
-									<button
-										type="button"
-										className="bg-transparent text-green-700 border border-green-700 px-3 py-1.5 m-1 rounded hover:bg-green-700 hover:text-white hover:border-transparent"
-									>
-										Create
-									</button>
-								</Link>
-							}
+							<Link href="/movies/create">
+								<button
+									type="button"
+									className={`flex items-center bg-green-700 text-white border border-green-700 px-3 py-1.5 m-1 rounded ${isLoading && "opacity-50 cursor-not-allowed"} hover:bg-green-900 hover:border-transparent`}
+								>
+									{isLoading && <ImSpinner9 className="rounded-full mr-2 animate-[spin_1.5s_linear_infinite]" />}
+									<span>
+										{isLoading ? "Loading..." : "Create"}
+									</span>
+								</button>
+							</Link>
 						</td>
 					</tr>
 				</tbody>
