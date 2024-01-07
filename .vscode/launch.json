@@ -1,6 +1,13 @@
 {
 	"configurations": [
 		{
+			"name": "Launch Chrome",
+			"request": "launch",
+			"type": "chrome",
+			"url": "http://localhost:3000",
+			"webRoot": "${workspaceFolder}"
+		},
+		{
 			"name": "Docker Compose: Client",
 			"type": "node-terminal",
 			"request": "launch",
