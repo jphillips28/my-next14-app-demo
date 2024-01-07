@@ -17,7 +17,9 @@ The `docker-compose.dev.yml` is a good template for quickly standing up a locall
     - This is for local development PostgreSQL dependency persistence
 - Node.js 20.10.0 LTS
 - NPM v10.2.5
-  - Manage and develop Prisma O/RM schema via `npx prisma migrate dev --name <schema-addition-reason>`
+  - Manage and develop Prisma O/RM schema
+    - `npx prisma migrate dev --name <schema-addition-reason>`
+    - `npx prisma migrate deploy`
 - Visual Studio Code v1.85.1
   - Quick `RUN AND DEGUG` Startup
 
