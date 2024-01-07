@@ -11,7 +11,9 @@
 			"name": "Full Stack",
 			"type": "node-terminal",
 			"request": "launch",
+			"preLaunchTask": "docker-compose: up postgres_db",
 			"command": "npm run dev",
+			"postDebugTask": "docker-compose: down",
 			"serverReadyAction": {
 				"pattern": "- Local:.+(https?://.+)",
 				"uriFormat": "%s",
