@@ -27,6 +27,14 @@ export default function MovieForm({ id }: MovieFromProps) {
 		}
 	}, [])
 
+	function handleSubmit(data: FormData) {
+		if (id !== "create") {
+			updateMovie(data)
+		} else {
+			submitMovie(data)
+		}
+	}
+
 	return (
 		<>
 			<h1 className="text-4xl font-medium mb-3">
@@ -35,7 +43,7 @@ export default function MovieForm({ id }: MovieFromProps) {
 					: movie.title}
 			</h1>
 			<section className="w-3/5">
-				<form action={id !== "create" ? updateMovie : submitMovie}>
+				<form action={handleSubmit}>
 					<div className="flex items-center gap-x-1 mb-3">
 						<label htmlFor="title">Title</label>
 						<input
