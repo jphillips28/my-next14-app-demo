@@ -1,16 +1,10 @@
 import MovieForm from "@/components/MovieForm"
 
-type RouteParams = {
-	params: {
-		id: string
-	}
-}
-
-export default async function Movie({ params }: RouteParams) {
+export default async function Movie() {
 	return (
 		<main className="w-full">
 			<article className="p-8">
-				<MovieForm id={params.id} />
+				<MovieForm />
 			</article>
 		</main>
 	)

@@ -2,14 +2,12 @@
 import { submitMovie, updateMovie } from "@/app/movies/actions";
 import { MovieResponse, getMovie } from "@/app/movies/fetchers";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
 import { ImSpinner9 } from "react-icons/im";
 
-type MovieFromProps = {
-	id: string
-}
-
-export default function MovieForm({ id }: MovieFromProps) {
+export default function MovieForm() {
+	const { id } = useParams<{ id: string }>()
 	const [movie, setMovie] = useState<MovieResponse>({ id, title: "Create Movie" })
 	const [title, setTitle] = useState<string | undefined>("")
 	const [isLoading, setLoading] = useState(true)
@@ -54,11 +52,13 @@ export default function MovieForm({ id }: MovieFromProps) {
 							id="title"
 							name="title"
 							placeholder="Movie title"
-							className="border border-black rounded-sm p-1 w-full"
+							className={`border border-black p-1 w-full rounded-sm ${(isLoading || isPending) && "cursor-not-allowed"}`}
 							autoFocus
 							required
 							value={title}
 							onChange={e => setTitle(e.target.value)}
+							disabled={isPending}
+							aria-disabled={isPending}
 						/>
 					</div>
 					<div className="flex items-center gap-x-1 justify-end">
@@ -73,13 +73,14 @@ export default function MovieForm({ id }: MovieFromProps) {
 						<button
 							type="submit"
 							name="movieId"
-							className={`flex items-center bg-green-700 text-white border border-green-700 px-3 py-1.5 rounded ${isPending && "opacity-50 cursor-not-allowed"} hover:bg-green-900 hover:border-transparent`}
+							className={`flex items-center bg-green-700 text-white border border-green-700 px-3 py-1.5 rounded ${(isLoading || isPending) && "opacity-50 cursor-not-allowed"} hover:bg-green-900 hover:border-transparent`}
 							value={id}
-							disabled={isPending}
+							disabled={(isLoading || isPending)}
+							aria-disabled={(isLoading || isPending)}
 						>
-							{isPending && <ImSpinner9 className="rounded-full mr-2 animate-[spin_1.5s_linear_infinite]" />}
+							{(isLoading || isPending) && <ImSpinner9 className="rounded-full mr-2 animate-[spin_1.5s_linear_infinite]" />}
 							<span>
-								{isPending ? "Submitting..." : "Submit"}
+								{isLoading ? "Loading..." : isPending ? "Submitting..." : "Submit"}
 							</span>
 						</button>
 					</div>
