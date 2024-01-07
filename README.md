@@ -21,7 +21,7 @@ The `docker-compose.dev.yml` is a good template for quickly standing up a locall
     - `npx prisma migrate dev --name <schema-addition-reason>`
     - `npx prisma migrate deploy`
 - Visual Studio Code v1.85.1
-  - Quick `RUN AND DEGUG` Startup
+  - Quick `RUN AND DEGUG` Startups
 
 ![alt text](https://github.com/jphillips28/my-next14-app-demo/blob/main/README_image_02.png?raw=true)
 - Azure Data Studio v1.47.0 (*optional*)
