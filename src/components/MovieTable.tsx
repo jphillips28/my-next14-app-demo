@@ -1,13 +1,15 @@
 "use client"
-import { removeMovie } from "@/app/movies/actions"
 import { MovieResponse, getMovies } from "@/app/movies/fetchers"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { ImSpinner9 } from "react-icons/im";
+import MovieDeleteConfirmation from "./MovieDeleteConfirmation";
 
 export default function MovieTable() {
 	const [movies, setMovies] = useState<MovieResponse[]>([])
 	const [isLoading, setLoading] = useState(true)
+	const [deleteMovie, setDeleteMovie] = useState<MovieResponse>({ id: "", title: "" })
+	const [isDeleteShowing, setDeleteShowing] = useState(false)
 
 	useEffect(() => {
 		getMovies()
@@ -16,6 +18,11 @@ export default function MovieTable() {
 				setLoading(false)
 			})
 	}, [])
+
+	function handleDeleteShow(movie: MovieResponse) {
+		setDeleteMovie(movie)
+		setDeleteShowing(true)
+	}
 
 	return (
 		<>
@@ -57,16 +64,13 @@ export default function MovieTable() {
 												Update
 											</button>
 										</Link>
-										<form action={removeMovie}>
-											<button
-												type="submit"
-												name="movieId"
-												className="bg-red-700 text-white border border-red-700 px-3 py-1.5 m-1 rounded hover:bg-red-900 hover:border-transparent"
-												value={movie.id}
-											>
-												Delete
-											</button>
-										</form>
+										<button
+											type="button"
+											className="bg-red-700 text-white border border-red-700 px-3 py-1.5 m-1 rounded hover:bg-red-900 hover:border-transparent"
+											onClick={() => handleDeleteShow(movie)}
+										>
+											Delete
+										</button>
 									</div>
 								</td>
 							</tr>
@@ -90,6 +94,12 @@ export default function MovieTable() {
 					</tr>
 				</tbody>
 			</table>
+			<MovieDeleteConfirmation
+				id={deleteMovie.id}
+				title={deleteMovie.title}
+				isVisible={isDeleteShowing}
+				onClose={() => setDeleteShowing(false)}
+			/>
 		</>
 	)
 }

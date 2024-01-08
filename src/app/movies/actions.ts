@@ -10,7 +10,6 @@ export async function submitMovie(data: FormData) {
 	}
 
 	await createMovie({ title })
-	// TODO: This is not updating the existing table... ?
 	redirect("/movies")
 }
 
@@ -28,7 +27,6 @@ export async function updateMovie(data: FormData) {
 	}
 
 	await putMovie(id, { title })
-	// TODO: This is not updating the existing table... ?
 	redirect("/movies")
 }
 
@@ -40,6 +38,4 @@ export async function removeMovie(data: FormData) {
 	}
 
 	await deleteMovie(id)
-	// TODO: This is not updating the existing table... ?
-	redirect("/movies")
 }

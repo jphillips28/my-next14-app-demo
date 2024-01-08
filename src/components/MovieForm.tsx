@@ -27,11 +27,11 @@ export default function MovieForm() {
 	}, [])
 
 	async function handleSubmit(data: FormData) {
-		startTransition(() => {
+		startTransition(async () => {
 			if (id !== "create") {
-				updateMovie(data)
+				await updateMovie(data)
 			} else {
-				submitMovie(data)
+				await submitMovie(data)
 			}
 		})
 	}
@@ -61,7 +61,7 @@ export default function MovieForm() {
 							aria-disabled={isPending}
 						/>
 					</div>
-					<div className="flex items-center gap-x-1 justify-end">
+					<div className="flex items-center gap-x-2 justify-end">
 						<Link href="/movies">
 							<button
 								type="button"
