@@ -10,7 +10,7 @@ The `docker-compose.dev.yml` is a good template for quickly standing up a locall
   - ***You must create a docker-desktop-data `volume` named `hot_reload_next`***
   - ***You must create a docker-desktop-data `volume` named `hot_reload_node_modules`***
     - These are purely for hot reloading during local development
-    - These provide a way to stop automatic volume creation in order to manage host-machine storage space
+    - These provide a way to stop automatic volume creation in order to manage host-machine storage space during local development
     - You will need to delete and recreate the associated volume when you add `.next` dependencies
     - You will need to delete and recreate the associated volume when you add `node_module` dependencies
   - ***You must create a docker-desktop-data `volume` named `postgres_16`***
