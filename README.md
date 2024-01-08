@@ -15,7 +15,7 @@ The `docker-compose.dev.yml` is a good template for quickly standing up a locall
     - You will need to delete and recreate the associated volume when you add `node_module` dependencies
     - I recommend deleteing and recreating these associated volumes daily, at the start of your local development
   - ***You must create a docker-desktop-data `volume` named `postgres_16`***
-    - This is for persisting the required local PostgreSQL database dependency
+    - This is for persisting the required PostgreSQL database dependency during local development
 - Node.js 20.10.0 LTS
 - NPM v10.2.5
   - Manage and develop Prisma O/RM schema
