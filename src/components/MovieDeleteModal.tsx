@@ -1,26 +1,22 @@
 "use client"
 import { removeMovie } from "@/app/movies/actions"
-import { useRouter } from "next/navigation"
+import { MovieResponse } from "@/app/movies/fetchers"
 import { useTransition } from "react"
 import { ImSpinner9 } from "react-icons/im"
 
-type MovieDeleteConfirmationProps = {
-	id: string
-	title: string | undefined
+type MovieDeleteModalProps = {
+	movie: MovieResponse
 	isVisible: boolean
 	onClose: () => void
 }
 
-export default function MovieDeleteConfirmation({ id, title, isVisible, onClose }: MovieDeleteConfirmationProps) {
-	const router = useRouter()
+export default function MovieDeleteModal({ movie, isVisible, onClose }: MovieDeleteModalProps) {
 	const [isPending, startTransition] = useTransition()
 
 	async function handleDelete(data: FormData) {
 		startTransition(async () => {
 			await removeMovie(data)
 		})
-		onClose()
-		router.refresh() // TODO: This is not reloading the page data after an HTTP DELETE
 	}
 
 	return (
@@ -32,7 +28,7 @@ export default function MovieDeleteConfirmation({ id, title, isVisible, onClose 
 							<h2 className="text-2xl font-medium">Delete Movie Confirmation</h2>
 						</div>
 						<div className="p-4 border-b border-gray-300">
-							<p>Are you sure you want to delete '{title}' from your list?</p>
+							<p>Are you sure you want to delete '{movie.title}' from your list?</p>
 						</div>
 						<div className="flex items-center gap-x-2 justify-end p-3">
 							<button
@@ -48,7 +44,7 @@ export default function MovieDeleteConfirmation({ id, title, isVisible, onClose 
 									type="submit"
 									name="movieId"
 									className={`flex items-center bg-green-700 text-white border border-green-700 px-3 py-1.5 rounded ${isPending && "opacity-50 cursor-not-allowed"} hover:bg-green-900 hover:border-transparent`}
-									value={id}
+									value={movie.id}
 									disabled={isPending}
 									aria-disabled={isPending}
 								>

@@ -3,12 +3,13 @@ import { MovieResponse, getMovies } from "@/app/movies/fetchers"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { ImSpinner9 } from "react-icons/im";
-import MovieDeleteConfirmation from "./MovieDeleteConfirmation";
+import MovieDeleteModal from "./MovieDeleteModal";
 
 export default function MovieTable() {
+	const emptyMovie: MovieResponse = { id: "" }
 	const [movies, setMovies] = useState<MovieResponse[]>([])
 	const [isLoading, setLoading] = useState(true)
-	const [deleteMovie, setDeleteMovie] = useState<MovieResponse>({ id: "", title: "" })
+	const [deleteMovie, setDeleteMovie] = useState<MovieResponse>(emptyMovie)
 	const [isDeleteShowing, setDeleteShowing] = useState(false)
 
 	useEffect(() => {
@@ -51,7 +52,7 @@ export default function MovieTable() {
 						</tr>
 						:
 						movies.map(movie => (
-							<tr key={movie.id} className="odd:bg-gray-50 hover:bg-gray-100">
+							<tr key={movie.id} className="odd:bg-gray-200 hover:bg-gray-300">
 								<td className="text-left p-1">...{movie.id.substring(movie.id.length - 6, movie.id.length)}</td>
 								<td className="text-left p-1">{movie.title}</td>
 								<td className="text-left p-1">
@@ -94,11 +95,10 @@ export default function MovieTable() {
 					</tr>
 				</tbody>
 			</table>
-			<MovieDeleteConfirmation
-				id={deleteMovie.id}
-				title={deleteMovie.title}
+			<MovieDeleteModal
+				movie={deleteMovie}
 				isVisible={isDeleteShowing}
-				onClose={() => setDeleteShowing(false)}
+				onClose={() => { setDeleteMovie(emptyMovie); setDeleteShowing(false) }}
 			/>
 		</>
 	)
