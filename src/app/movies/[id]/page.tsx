@@ -1,4 +1,9 @@
 import MovieForm from "@/components/MovieForm"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+	title: 'Movie Editor',
+}
 
 export default async function Movie() {
 	return (
