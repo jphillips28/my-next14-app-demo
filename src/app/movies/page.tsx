@@ -1,8 +1,7 @@
 import MovieCreateRow from "@/components/MovieCreateRow"
 import MovieRows from "@/components/MovieRows"
-import MovieRowsLoading from "@/components/MovieRowsLoading"
 import { Metadata } from "next"
-import { Suspense } from "react"
+import { getMovies } from "./fetchers"
 
 export const metadata: Metadata = {
 	title: 'Movies',
@@ -11,6 +10,8 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic"
 
 export default async function Movies() {
+	const movies = await getMovies()
+
 	return (
 		<main className="w-full">
 			<article className="p-8">
@@ -25,10 +26,8 @@ export default async function Movies() {
 						</tr>
 					</thead>
 					<tbody>
-						<Suspense fallback={<MovieRowsLoading />}>
-							<MovieRows />
-							<MovieCreateRow />
-						</Suspense>
+						<MovieRows movies={movies} />
+						<MovieCreateRow />
 					</tbody >
 				</table >
 			</article>

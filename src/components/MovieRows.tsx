@@ -1,8 +1,22 @@
-import { getMovies } from "@/app/movies/fetchers"
+"use client"
+import { MovieResponse } from "@/app/movies/fetchers"
 import Link from "next/link"
+import MovieDeleteModal from "./MovieDeleteModal"
+import { useState } from "react"
 
-export default async function MovieRows() {
-	const movies = await getMovies()
+type MovieRowsProps = {
+	movies: MovieResponse[]
+}
+
+export default function MovieRows({ movies }: MovieRowsProps) {
+	const emptyMovie: MovieResponse = { id: "" }
+	const [deleteMovie, setDeleteMovie] = useState<MovieResponse>(emptyMovie)
+	const [isDeleteShowing, setIsDeleteShowing] = useState(false)
+
+	function handleDeleteShow(movie: MovieResponse) {
+		setDeleteMovie(movie)
+		setIsDeleteShowing(true)
+	}
 
 	return (
 		<>
@@ -23,7 +37,7 @@ export default async function MovieRows() {
 							<button
 								type="button"
 								className="bg-red-700 text-white border border-red-700 px-3 py-1.5 m-1 rounded hover:bg-red-900 hover:border-transparent"
-							//onClick={() => handleDeleteShow(movie)}
+								onClick={() => handleDeleteShow(movie)}
 							>
 								Delete
 							</button>
@@ -31,6 +45,11 @@ export default async function MovieRows() {
 					</td>
 				</tr>
 			))}
+			<MovieDeleteModal
+				movie={deleteMovie}
+				isVisible={isDeleteShowing}
+				onClose={() => { setIsDeleteShowing(false); setDeleteMovie(emptyMovie) }}
+			/>
 		</>
 	)
 }

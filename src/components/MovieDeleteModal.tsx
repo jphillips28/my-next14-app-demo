@@ -17,6 +17,7 @@ export default function MovieDeleteModal({ movie, isVisible, onClose }: MovieDel
 		startTransition(async () => {
 			await removeMovie(data)
 		})
+		onClose()
 	}
 
 	return (
@@ -50,7 +51,7 @@ export default function MovieDeleteModal({ movie, isVisible, onClose }: MovieDel
 								>
 									{isPending && <ImSpinner9 className="rounded-full mr-2 animate-[spin_1.5s_linear_infinite]" />}
 									<span>
-										{isPending ? "Deleting..." : "Delete"}
+										{isPending ? "Deleting" : "Delete"}
 									</span>
 								</button>
 							</form>
