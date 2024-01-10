@@ -10,7 +10,7 @@ type MovieFormProps = {
 }
 
 export default function MovieForm({ movie }: MovieFormProps) {
-	const [title, setTitle] = useState<string | undefined>(movie.id !== "create" ? movie.title : undefined)
+	const [title, setTitle] = useState<string | undefined>(movie.id !== "create" ? movie.title : "")
 	const [isPending, startTransition] = useTransition()
 
 	async function handleSubmit(data: FormData) {
