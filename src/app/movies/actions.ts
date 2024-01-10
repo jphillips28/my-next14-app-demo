@@ -1,7 +1,7 @@
 "use server"
+import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 import { createMovie, deleteMovie, putMovie } from "./fetchers"
-import { revalidatePath } from "next/cache"
 
 export async function submitMovie(data: FormData) {
 	const title = data.get("title")?.valueOf()
