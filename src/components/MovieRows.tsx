@@ -43,11 +43,13 @@ export default function MovieRows({ movies }: MovieRowsProps) {
 					</td>
 				</tr>
 			))}
-			<MovieDeleteModal
-				movie={deleteMovie}
-				isVisible={isDeleteShowing}
-				onClose={() => { setIsDeleteShowing(false); setDeleteMovie(emptyMovie) }}
-			/>
+			<td>
+				<MovieDeleteModal
+					movie={deleteMovie}
+					isVisible={isDeleteShowing}
+					onClose={() => { setIsDeleteShowing(false); setDeleteMovie(emptyMovie) }}
+				/>
+			</td>
 		</>
 	)
 }
