@@ -29,7 +29,7 @@ export default function MovieDeleteModal({ movie, isVisible, onClose }: MovieDel
 							<h2 className="text-2xl font-medium">Delete Movie Confirmation</h2>
 						</div>
 						<div className="p-4 border-b border-gray-300">
-							<p>Are you sure you want to delete '{movie.title}' from your list?</p>
+							<p>Are you sure you want to delete &apos;{movie.title}&apos; from your list?</p>
 						</div>
 						<div className="flex items-center gap-x-2 justify-end p-3">
 							<button
