@@ -35,7 +35,7 @@ jobs:
       uses: docker/login-action@v3.0.0
       with:
         username: ${{ env.DOCKER_HUB_USERNAME }}
-        password: ${{ emv.DOCKER_HUB_PAT }}
+        password: ${{ env.DOCKER_HUB_PAT }}
 
     - name: Docker Scout Scan
       uses: docker/scout-action@v1.2.2
