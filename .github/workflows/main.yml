@@ -38,3 +38,4 @@ jobs:
         dockerhub-password: ${{ env.DOCKER_HUB_PAT }}
         command: quickview,cves
         only-severities: critical,high
+        exit-code: true
