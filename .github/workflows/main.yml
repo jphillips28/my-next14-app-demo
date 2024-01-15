@@ -1,0 +1,38 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Node.js CI
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+jobs:
+  image_scan:
+    name: Build Image then Run Image Scan
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4.1.1
+
+    - name: Setup Docker
+      uses: docker-practice/actions-setup-docker@v1
+      with:
+        docker_version: '20.10.7'
+
+    - name: Build Docker Image
+      run: docker build -f dev.Deockerfile -t my-next14-app-demo:latest .
+
+    - name: Docker Scout Scan
+      run: |
+        curl -fsSL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh -o install-scout.sh
+        sh install-scout.sh
+        docker scout quickview
+        docker scout cves
+        
+    
