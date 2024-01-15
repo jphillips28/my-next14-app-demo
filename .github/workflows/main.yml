@@ -34,6 +34,7 @@ jobs:
     - name: Docker Scout Scan
       uses: docker/scout-action@v1.2.2
       with:
-        command: quickview,cves
         dockerhub-user: ${{ env.DOCKER_HUB_USERNAME }}
         dockerhub-password: ${{ env.DOCKER_HUB_PAT }}
+        command: quickview,cves
+        only-severities: critical,high
