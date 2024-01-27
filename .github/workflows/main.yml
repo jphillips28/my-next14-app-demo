@@ -28,10 +28,13 @@ jobs:
       with:
         version: v0.10.0
         driver-opts: image=moby/buildkit:v0.11.0
-        install: true
 
     - name: Build Docker Image
-      run: docker build -f dev.Dockerfile -t my-next14-app-demo:latest .
+      uses: docker/build-push-action@v5.1.0
+      with:
+        context: .
+        file: dev.Dockerfile
+        tags: my-next14-app-demo:latest
 
     - name: Docker Scout Scan
       uses: docker/scout-action@v1.3.0
